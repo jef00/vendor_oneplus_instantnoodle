@@ -6,13 +6,12 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter guacamole guacamoleb guacamoleg hotdog hotdogb,$(PRODUCT_DEVICE)),)
+ifeq ($(PRODUCT_DEVICE),instantnoodle)
 
 $(info Including firmware for $(PRODUCT_DEVICE)...)
 
-FIRMWARE_IMAGES := $(wildcard $(LOCAL_PATH)/$(PRODUCT_DEVICE)/*)
+FIRMWARE_IMAGES := $(wildcard $(LOCAL_PATH)/radio/*)
 
 $(foreach f, $(notdir $(FIRMWARE_IMAGES)), \
-    $(call add-radio-file,$(PRODUCT_DEVICE)/$(f)))
-
+    $(call add-radio-file,radio/$(f)))
 endif
